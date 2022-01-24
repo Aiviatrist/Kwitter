@@ -13,14 +13,13 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
  
       function keloggs(){
-           rn=document.getElementById("kool").value;
-           firebase.database().ref("/").child(rn).update({
+           room_name=document.getElementById("kool").value;
+           firebase.database().ref("/").child(room_name).update({
                    purpose="adding roomname"
            });
-           localStorage.setItem("roomname",rn);
+           localStorage.setItem("roomname",room_name);
            window.location="kwitter_page.html";
-      }
-
+                               
 function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
        Room_names = childKey;
       
@@ -31,4 +30,9 @@ getData();
 function redirectToRoomname(name){
       localStorage.setItem("roomname",name);
       window.location ="kwitter_page.html";
+}
+function logout(){
+      localStorage.removeItem("name");
+      localStorage.removeItem("roomname");
+      window.location="index.html";
 }
